@@ -1,11 +1,16 @@
 import React from 'react'
 import logo from "../assets/logo.webp"
+import ColorModeSwitch from './ColorModeSwitch'
 
-export default function NavBar() {
+type darkProps = {
+  handleDarkMode: (isChecked: boolean)=> void
+}
+
+export default function NavBar({handleDarkMode}:darkProps) {
   return (
-    <div className='flex flex-row items-center'>
+    <div className='flex flex-row items-center justify-between px-5'>
         <img className='w-[80px]' src={logo} alt="LogoPic" />
-        <h1 className='text-2xl'>NavBar</h1>
+        <ColorModeSwitch handleDarkMode={handleDarkMode}/>
     </div>
   )
 }

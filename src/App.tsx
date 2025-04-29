@@ -1,5 +1,6 @@
 import React from "react"
 import NavBar from "./components/NavBar"
+import GameGrid from "./components/GameGrid";
 
 function App() {
   const [dark,setDark] = React.useState<boolean>(false);
@@ -16,7 +17,9 @@ function App() {
             <NavBar handleDarkMode={handleDarkMode}></NavBar>
           </div>
           <div className="bg-amber-300 hidden sm:block dark:text-white">Aside</div>
-          <div className="bg-green-500 col-span-2 sm:col-span-1 dark:text-white">Main</div>
+          <div className="bg-green-500 col-span-2 sm:col-span-1 dark:text-white">
+            <GameGrid/>
+          </div>
         </div>
       </div>
     </>

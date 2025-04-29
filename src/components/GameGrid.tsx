@@ -1,4 +1,4 @@
-import React from 'react'
+
 import useGames from '../hooks/useGames';
 import GameCard from './GameCard';
 

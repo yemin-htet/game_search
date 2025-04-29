@@ -29,7 +29,7 @@ export default function PlatformIconList({platforms}: Prop) {
         web: BsGlobe
       }
   return (
-    <div className="flex flex-row gap-3 my-2">
+    <div className="flex flex-row gap-1 my-2">
        {platforms.map(platform => {
         const Icon = iconMap[platform.slug];
         return Icon ? <Icon key={platform.slug} title={platform.name} /> : null;

@@ -1,6 +1,6 @@
 import React from 'react'
 import useGames from '../hooks/useGames';
-
+import GameCard from './GameCard';
 
 
 
@@ -10,9 +10,10 @@ export default function GameGrid() {
   return (
     <>
         {error && <h1>{error}</h1>}
-      <ul>
-        {games.map(game => <li key={game.id}>{game.name}</li>)}
-      </ul>
+        <div className='grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2'>
+          {games.map(game => <GameCard game={game}/>)}
+        </div>
+        
     </>
     
   )

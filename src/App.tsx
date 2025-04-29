@@ -11,13 +11,13 @@ function App() {
 
   return (
     <>
-      <div className={`w-screen h-screen dark:bg-gray-900 ${dark? 'dark':""}`}>
-        <div className="grid grid-cols-2 gap-1">
-          <div className="col-span-2">
+      <div className={`w-screen h-full dark:bg-gray-900 ${dark? 'dark':""}`}>
+        <div className="grid grid-cols-5 gap-1">
+          <div className="col-span-5">
             <NavBar handleDarkMode={handleDarkMode}></NavBar>
           </div>
-          <div className="bg-amber-300 hidden sm:block dark:text-white">Aside</div>
-          <div className="bg-green-500 col-span-2 sm:col-span-1 dark:text-white">
+          <div className="col-span-1 hidden sm:block dark:text-white">Aside</div>
+          <div className="col-span-5 sm:col-span-4 dark:text-white px-7 py-5">
             <GameGrid/>
           </div>
         </div>

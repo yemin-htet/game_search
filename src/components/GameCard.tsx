@@ -2,6 +2,7 @@
 import { Game } from '../hooks/useGames'
 import PlatformIconList from './PlatformIconList';
 import CriticScore from './CriticScore';
+import getCroppedImage from '../services/image-url';
 
 interface Props{
     game: Game;
@@ -12,7 +13,7 @@ export default function GameCard({game}: Props) {
     <>
     <div className="max-w-sm h-auto  bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img className="rounded-t-lg" src={game.background_image} alt="" />
+        <img className="rounded-t-lg" src={getCroppedImage(game.background_image)} alt="" />
     </a>
     <div className="p-5">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{game.name}</h5>

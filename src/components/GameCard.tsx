@@ -18,7 +18,7 @@ export default function GameCard({game}: Props) {
     <div className="p-5">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{game.name}</h5>
 
-        <div className="flex flex-row justify-between ">
+        <div className="flex flex-row justify-between flex-wrap">
           <PlatformIconList platforms={game.parent_platforms.map(({platform})=> platform)}/>
           <CriticScore score={game.metacritic}/>
           

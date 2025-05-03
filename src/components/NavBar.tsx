@@ -8,7 +8,7 @@ type darkProps = {
 
 export default function NavBar({handleDarkMode}:darkProps) {
   return (
-    <div className='flex flex-row items-center justify-between px-5'>
+    <div className='flex flex-row items-center justify-between px-5 py-3 my-3'>
         <img className='w-[80px]' src={logo} alt="LogoPic" />
         <ColorModeSwitch handleDarkMode={handleDarkMode}/>
     </div>

@@ -12,15 +12,18 @@ function App() {
   return (
     <>
       <div className={`w-screen h-full dark:bg-gray-900 ${dark? 'dark':""}`}>
-        <div className="grid grid-cols-5 gap-1">
-          <div className="col-span-5">
-            <NavBar handleDarkMode={handleDarkMode}></NavBar>
+        <div className="flex flex-col">
+          <div className="nav">
+          <NavBar handleDarkMode={handleDarkMode}></NavBar>
           </div>
-          <div className="col-span-1 hidden sm:block dark:text-white">
+          <div className="body flex flex-row">
+          <div className="dark:text-white flex-2/12 md:block hidden">
             <GenreList/>
           </div>
-          <div className="col-span-5 sm:col-span-4 dark:text-white px-7 py-5">
+          <div className="dark:text-white px-7 py-5 flex-10/12">
             <GameGrid/>
+          </div>
+
           </div>
         </div>
       </div>

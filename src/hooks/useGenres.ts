@@ -2,7 +2,7 @@ import React from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
-interface Genre {
+export interface Genre {
     id: number;
     name: string;
     slug: string;
@@ -22,7 +22,7 @@ const useGenres = () => {
 
   React.useEffect(() => {
     let controller = new AbortController()
-    console.log(isLoading)
+
     apiClient.get<FetchGenresResponse>('/genres',{signal : controller.signal})
     .then(res => {
       setGenres(res.data.results || []);

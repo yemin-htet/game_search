@@ -1,16 +1,24 @@
-
-import useGenres from '../hooks/useGenres'
+import useGenres, { Genre } from '../hooks/useGenres'
 import getCroppedImage from '../services/image-url';
+import Spinner from './Spinner';
 
-export default function GenreList() {
+interface Props{
+  setSelectedGenre: (genre: Genre)=> void;
+  selectedGenre: Genre | null;
+}
+
+export default function GenreList({selectedGenre,setSelectedGenre}: Props) {
   const {genres,error,isLoading} = useGenres();
+  if (error) return null;
+  if (isLoading) return <Spinner/>;
   return (
     <ul className='flex flex-col gap-3 ml-7'>
       {genres.map(
         genre => 
-        <li className='flex flex-row justify-start items-center'>
+        <li className='flex flex-row justify-start items-center' key={genre.id}>
           <img className='w-[35px] h-[35px] rounded-xl mr-2' src={getCroppedImage(genre.image_background)} alt="" />
-          <h1>{genre.name}</h1>
+          <button className={`hover:underline ${genre.id === selectedGenre?.id? "font-bold text-2xl" : ""}`} 
+          onClick={()=> (setSelectedGenre(genre))}>{genre.name}</button>
         </li>)}
     </ul>
   )

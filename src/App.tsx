@@ -5,12 +5,18 @@ import GenreList from "./components/GenreList";
 import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/useGames";
+import SortSelector from "./components/SortSelector";
+
+export interface GameQuery{
+  genre : Genre | null,
+  platform: Platform | null
+}
+
 
 
 function App() {
+  const [gameQuery,setGameQuery] = React.useState<GameQuery>({} as GameQuery)
   const [dark,setDark] = React.useState<boolean>(false);
-  const [selectedGenre,setSelectedGenre] = React.useState<Genre | null>(null)
-  const [selectedPlatform, setSelectedPlatform] = React.useState<Platform | null>(null)
   function handleDarkMode(isChecked : boolean): void{
     setDark(isChecked);
   }
@@ -23,11 +29,15 @@ function App() {
           </div>
           <div className="body flex flex-row">
           <div className="dark:text-white flex-2/12 lg:block hidden px-0">
-            <GenreList selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre}/>
+            <GenreList selectedGenre={gameQuery.genre} setSelectedGenre={(genre) => setGameQuery({...gameQuery, genre})}/>
           </div>
           <div className="dark:text-white px-7 py-5 flex-10/12 flex flex-col gap-3">
-            <PlatformSelector selectedPlatform={selectedPlatform} setSelectedPlatform={setSelectedPlatform}/>
-            <GameGrid selectedGenre={selectedGenre} selectedPlatform={selectedPlatform}/>
+              
+              <div className="flex flex-row items-start gap-2">
+                <PlatformSelector selectedPlatform={gameQuery.platform} setSelectedPlatform={(platform) => setGameQuery({...gameQuery, platform})}/>
+                <SortSelector/>
+              </div>
+            <GameGrid gameQuery={gameQuery}/>
           </div>
 
           </div>

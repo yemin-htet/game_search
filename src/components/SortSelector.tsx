@@ -1,21 +1,11 @@
-import React from "react"
-import usePlatform from "../hooks/usePlatform";
-import Spinner from "./Spinner";
-import { Platform } from "../hooks/useGames";
+import React from 'react'
 
-interface Props{
-    setSelectedPlatform: (platform: Platform | null) => void;
-    selectedPlatform: Platform | null;
-}
-
-export default function PlatformSelector({setSelectedPlatform, selectedPlatform}:Props) {
+export default function SortSelector() {
   const [isOpen,setIsOpen] = React.useState(false);
-  const {data,error,isLoading} = usePlatform();
-  if(error) return null;
-  if(isLoading) return <Spinner/>;
+  const numList = ["Relevance","Date added","Name","Popularity","Average Rating"]
   return (
     <>
-         <div className="relative text-left">
+         <div className="relative  text-left">
             <div>
                 <button
                     onClick={()=> setIsOpen(!isOpen)}
@@ -24,7 +14,7 @@ export default function PlatformSelector({setSelectedPlatform, selectedPlatform}
                     text-sm font-medium text-gray-700 hover:bg-gray-50 
                     focus:outline-none"
                 >
-                    {selectedPlatform? selectedPlatform.name:"Options"}
+                    Order by: Relevance
                     <svg
                         className="ml-2 -mr-1 h-5 w-5"
                         xmlns="http://www.w3.org/2000/svg"
@@ -51,8 +41,8 @@ export default function PlatformSelector({setSelectedPlatform, selectedPlatform}
                     role="menu"
                 >
                     <div className="py-1" role="none">
-                        {data.map(platform => <button onClick={()=> (setSelectedPlatform(platform))} className="block px-4 py-2 text-black">{platform.name}</button> )}
-                    </div>
+                        {numList.map((num)=> <button className="block px-4 py-2 text-black">{num}</button>)}
+                   </div>
                 </div>
             )}
         </div>

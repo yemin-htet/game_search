@@ -1,8 +1,18 @@
 import React from 'react'
 
-export default function SortSelector() {
+interface Props{
+    onSelectSort: (sortOrder: string) => void;
+    selectedOrder: string;
+}
+
+export default function SortSelector({onSelectSort, selectedOrder}: Props) {
   const [isOpen,setIsOpen] = React.useState(false);
-  const numList = ["Relevance","Date added","Name","Popularity","Average Rating"]
+  const orderList = [{value:"",label:"Relevance"},
+                    {value:"-added",label:"Date added"},
+                    {value:"name",label:"Name"},
+                    {value: "-released", label:"Release date"},
+                    {value: "-metacritic", label:"Popularity"},
+                    {value: "-rating",label:"Average rating"}]
   return (
     <>
          <div className="relative  text-left">
@@ -14,7 +24,7 @@ export default function SortSelector() {
                     text-sm font-medium text-gray-700 hover:bg-gray-50 
                     focus:outline-none"
                 >
-                    Order by: Relevance
+                {selectedOrder?   "Order by:" + selectedOrder : "Order by: Relevance"}
                     <svg
                         className="ml-2 -mr-1 h-5 w-5"
                         xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +51,9 @@ export default function SortSelector() {
                     role="menu"
                 >
                     <div className="py-1" role="none">
-                        {numList.map((num)=> <button className="block px-4 py-2 text-black">{num}</button>)}
+                        {orderList.map((order)=> <button onClick={()=> onSelectSort(order.value)}
+                        className="block px-4 py-2 text-black hover:underline">{order.label}
+                        </button>)}
                    </div>
                 </div>
             )}

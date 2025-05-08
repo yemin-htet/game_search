@@ -8,8 +8,9 @@ import { Platform } from "./hooks/useGames";
 import SortSelector from "./components/SortSelector";
 
 export interface GameQuery{
-  genre : Genre | null,
+  genre : Genre | null;
   platform: Platform | null
+  sortSelector: string;
 }
 
 
@@ -35,7 +36,7 @@ function App() {
               
               <div className="flex flex-row items-start gap-2">
                 <PlatformSelector selectedPlatform={gameQuery.platform} setSelectedPlatform={(platform) => setGameQuery({...gameQuery, platform})}/>
-                <SortSelector/>
+                <SortSelector selectedOrder={gameQuery.sortSelector} onSelectSort={(sortSelector: string)=> setGameQuery({...gameQuery,sortSelector})}/>
               </div>
             <GameGrid gameQuery={gameQuery}/>
           </div>

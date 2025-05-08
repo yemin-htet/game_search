@@ -12,14 +12,17 @@ export default function GenreList({selectedGenre,setSelectedGenre}: Props) {
   if (error) return null;
   if (isLoading) return <Spinner/>;
   return (
-    <ul className='flex flex-col gap-3 ml-7'>
-      {genres.map(
-        genre => 
-        <li className='flex flex-row justify-start items-center' key={genre.id}>
-          <img className='w-[35px] h-[35px] rounded-xl mr-2' src={getCroppedImage(genre.image_background)} alt="" />
-          <button className={`hover:underline ${genre.id === selectedGenre?.id? "font-bold text-2xl" : ""}`} 
-          onClick={()=> (setSelectedGenre(genre))}>{genre.name}</button>
-        </li>)}
-    </ul>
+    <>
+      <h1 className='text-5xl font-bold pt-3 pb-7 ml-7'>Genre</h1>
+      <ul className='flex flex-col gap-3 ml-7'>
+        {genres.map(
+          genre =>
+          <li className='flex flex-row justify-start items-center' key={genre.id}>
+            <img className='w-[35px] h-[35px] rounded-xl mr-2 object-cover' src={getCroppedImage(genre.image_background)} alt="" />
+            <button className={`hover:underline ${genre.id === selectedGenre?.id? "font-bold text-2xl" : ""}`}
+            onClick={()=> (setSelectedGenre(genre))}>{genre.name}</button>
+          </li>)}
+      </ul>
+    </>
   )
 }
